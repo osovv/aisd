@@ -9,7 +9,7 @@ ELEMENT_TO_FIND = 5256
 
 
 @timer_func
-def fib_search(array: list[int], x: int) -> int:
+def golden_ratio_search(array: list[int], x: int) -> int:
     """* Returns index of x in array if present,  else returns -1 """
     n = len(array)
     # Initialize fibonacci numbers
@@ -57,7 +57,7 @@ def fib_search(array: list[int], x: int) -> int:
 
 if __name__ == "__main__":
     arr = sorted(random.sample(range(MIN_ELEMENT, MAX_ELEMENT + 1), ARRAY_SIZE))
-    idx = fib_search(arr, ELEMENT_TO_FIND)
+    idx = golden_ratio_search(arr, ELEMENT_TO_FIND)
     if idx != -1:
         print(f"Found at index: {idx}")
     else:
