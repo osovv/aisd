@@ -2,10 +2,10 @@ import random
 
 from utils import timer_func
 
-ARRAY_SIZE = 100
+ARRAY_SIZE = 20_000
 MIN_ELEMENT = 1
-MAX_ELEMENT = 100
-ELEMENT_TO_FIND = 51
+MAX_ELEMENT = 30_000
+ELEMENT_TO_FIND = 5256
 
 
 @timer_func
@@ -56,7 +56,7 @@ def fib_search(array: list[int], x: int) -> int:
 
 
 if __name__ == "__main__":
-    arr = random.sample(range(MIN_ELEMENT, MAX_ELEMENT + 1), ARRAY_SIZE)
+    arr = sorted(random.sample(range(MIN_ELEMENT, MAX_ELEMENT + 1), ARRAY_SIZE))
     idx = fib_search(arr, ELEMENT_TO_FIND)
     if idx != -1:
         print(f"Found at index: {idx}")
