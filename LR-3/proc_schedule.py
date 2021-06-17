@@ -21,14 +21,15 @@ def max_filling(procs):
 
 def schedule(t):
 	res = {i : [] for i in range(1, PROC_NUMBER+1)}
+	data = t.copy()
 
 	while True:
 		min_fill, min_idx = less_filled_proc(res)
 		max_fill, max_fill = max_filling(res)
-		max_item = max(t)
+		max_item = max(data)
 		res[min_idx].append(max_item)
-		t.remove(max_item)
-		if len(t) == 0:
+		data.remove(max_item)
+		if len(data) == 0:
 			break
 	return res
 
