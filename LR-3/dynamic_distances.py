@@ -1,4 +1,4 @@
-def bellman_ford(vertexes, edges, source):
+def dynamic_distances(vertexes, edges, source):
 	n = len(vertexes)
 	distance = [float("inf") for _ in range(n+1)]
 	predecessor = [None for _ in range(n+1)]
@@ -64,6 +64,6 @@ if __name__ == "__main__":
 
 	vertexes = [1,2,3,4,5,6,7,8,9,10]
 	src = 1
-	distance, predecessor = bellman_ford(vertexes, edges, src)
+	distance, predecessor = dynamic_distances(vertexes, edges, src)
 	print(distance)
 	print(predecessor)
