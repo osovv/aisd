@@ -5,12 +5,11 @@ def bellman_ford(vertexes, edges, source):
 	distance[source] = 0
 
 	for i in range(n):
-
 		for u, v, w in edges:
 			if distance[u] + w < distance[v]:
 				distance[v] = distance[u] + w
 				predecessor[v] = u
-	
+
 	return distance[1:], predecessor[1:]
 
 if __name__ == "__main__":

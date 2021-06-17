@@ -33,11 +33,13 @@ def pack_items(items):
 			break
 		i += 1
 	return boxes
-	
+
 
 if __name__ == "__main__":
 	items = [random.randint(MIN_ITEM_SIZE, MAX_ITEM_SIZE) for _ in range(ITEMS_COUNT)]
 	print(items)
 	res = pack_items(items)
+	sum_ = sum
 	for k,v in res.items():
-		print(f"{k} : {v}")
+		sum = sum_(v)
+		print(f"{k} : {v}, {sum=}")

@@ -36,5 +36,7 @@ if __name__ == "__main__":
 	t = [random.randint(MIN_TIME, MAX_TIME) for _ in range(T_SIZE)]
 	print(f"{sorted(t)}, sum(t)/{PROC_NUMBER} = {sum(t)/PROC_NUMBER}")
 	res = schedule(t)
+	sum_ = sum
 	for k,v in res.items():
-		print(f"{k} : {v}, sum = {sum(v)}")
+		sum = sum_(v)
+		print(f"{k} : {v}, {sum=}")
