@@ -9,13 +9,13 @@ def print_distances(dist, V):
 
 
 def min_distance(mdist, visited, V):
-    minVal = float("inf")
-    minInd = -1
+    min_value = float("inf")
+    min_idx = -1
     for i in range(V):
-        if i not in visited and mdist[i] < minVal:
-            minInd = i
-            minVal = mdist[i]
-    return minInd
+        if i not in visited and mdist[i] < min_value:
+            min_idx = i
+            min_value = mdist[i]
+    return min_idx
 
 
 def dijkstra(graph, V, src):
