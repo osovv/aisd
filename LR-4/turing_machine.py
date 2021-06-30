@@ -56,6 +56,10 @@ class TuringMachine(object):
         else:
             return False
 
+    def run(self):
+        while not self.final():
+            self.step()
+
 
 if __name__ == "__main__":
     tape = "||| "
@@ -78,8 +82,7 @@ if __name__ == "__main__":
     print("Input on Tape:")
     print(t.get_tape())
 
-    while not t.final():
-        t.step()
+    t.run()
 
     print("Result:")
     print(t.get_tape())
