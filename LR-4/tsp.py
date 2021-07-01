@@ -25,7 +25,7 @@ def  tsp(adj_mat, src=0):
     u = Node()
     pq = PriorityQueue()
     optimal_length = 0
-    v = Node(level=0, path=[0])
+    v = Node(level=1, path=[0])
     min_length = float('inf')
     v.bound = bound(adj_mat, v)
     pq.put(v)
@@ -36,14 +36,17 @@ def  tsp(adj_mat, src=0):
             for i in filter(lambda x: x not in v.path, range(1, n)):
                 u.path = v.path[:]
                 u.path.append(i)
-                if u.level == n - 2:
-                    l = set(range(1, n)) - set(u.path)
-                    u.path.append(list(l)[0])
+                if u.level == n - 1:
+                    remaining_vertex = set(range(1, n)) - set(u.path)
+                    print(f'{u.path=}')
+                    print(f'{remaining_vertex=}')
+                    u.path.append(list(remaining_vertex)[0])
                     u.path.append(0)
+                    print(f'{u.path=}')
                     _len = length(adj_mat, u)
                     if _len < min_length:
                         min_length = _len
-                        optimal_length = _len
+                        optimal_length = min_length
                         optimal_tour = u.path[:]
                 else:
                     u.bound = bound(adj_mat, u)
@@ -51,14 +54,7 @@ def  tsp(adj_mat, src=0):
                         pq.put(u)
                 u = Node(level=u.level)
 
-    optimal_tour_src = optimal_tour
-    if src != 1:
-        optimal_tour_src = optimal_tour[:-1]
-        y = optimal_tour_src.index(src)
-        optimal_tour_src = optimal_tour_src[y:] + optimal_tour_src[:y]
-        optimal_tour_src.append(optimal_tour_src[0])
-
-    return optimal_tour_src, optimal_length
+    return optimal_tour, optimal_length
 
 
 def length(adj_mat, node):
@@ -73,6 +69,7 @@ def bound(adj_mat, node):
     n = len(adj_mat)
     determined, last = path[:-1], path[-1]
     remain = list(filter(lambda x: x not in path, range(n)))
+    # print(f"{remain=}")
 
     for i in range(len(path) - 1):
         _bound += adj_mat[path[i]][path[i + 1]]
@@ -80,6 +77,8 @@ def bound(adj_mat, node):
     _bound += min([adj_mat[last][i] for i in remain])
 
     p = [path[0]] + remain
+    # print(f"{remain=}")
+    # print(f"{p=}")
     for r in remain:
         _bound += min([adj_mat[r][i] for i in filter(lambda x: x != r, p)])
     return _bound
