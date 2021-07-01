@@ -1,11 +1,11 @@
 
 class Tape:
 
-    blank_symbol = " "
-
     def __init__(self,
-                 tape_string = ""):
+                 tape_string = "",
+                 blank_symbol =" "):
         self.tape = dict((enumerate(tape_string)))
+        self.blank_symbol = blank_symbol
 
     def __str__(self):
         return ''.join(self.tape.values())
@@ -14,13 +14,13 @@ class Tape:
         if index in self.tape:
             return self.tape[index]
         else:
-            return Tape.blank_symbol
+            return self.blank_symbol
 
     def __setitem__(self, pos, char):
         self.tape[pos] = char
 
 
-class TuringMachine(object):
+class TuringMachine:
 
     def __init__(self,
                  tape = "",
@@ -28,9 +28,8 @@ class TuringMachine(object):
                  initial_state = "",
                  final_states = None,
                  transition_function = None):
-        self.tape = Tape(tape)
+        self.tape = Tape(tape_string=tape, blank_symbol=blank_symbol)
         self.head_position = 0
-        self.blank_symbol = blank_symbol
         self.current_state = initial_state
         self.transition_function = transition_function or {}
         self.final_states = set(final_states) or set()
